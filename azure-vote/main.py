@@ -28,13 +28,13 @@ from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 #exporter = # TODO: Setup exporter
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=1e8370e2-5222-4a3a-8b0e-cf0c2daa5e5f')
+  connection_string='InstrumentationKey=d069c3f6-ff9a-46e5-b3ac-0df8992c50de')
 
 # Tracing
 #tracer = # TODO: Setup tracer
 tracer = Tracer(
     exporter=AzureExporter(
-        connection_string='InstrumentationKey=1e8370e2-5222-4a3a-8b0e-cf0c2daa5e5f'),
+        connection_string='InstrumentationKey=d069c3f6-ff9a-46e5-b3ac-0df8992c50de'),
     sampler=ProbabilitySampler(1.0),
 )
 
@@ -44,7 +44,7 @@ app = Flask(__name__)
 #middleware = # TODO: Setup flask middleware
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=1e8370e2-5222-4a3a-8b0e-cf0c2daa5e5f"),
+    exporter=AzureExporter(connection_string="InstrumentationKey=d069c3f6-ff9a-46e5-b3ac-0df8992c50de"),
     sampler=ProbabilitySampler(rate=1.0),
 )
 
