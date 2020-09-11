@@ -44,7 +44,7 @@ app = Flask(__name__)
 #middleware = # TODO: Setup flask middleware
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=1e8370e2-5222-4a3a-8b0e-cf0c2daa5e5f}"),
+    exporter=AzureExporter(connection_string="InstrumentationKey=1e8370e2-5222-4a3a-8b0e-cf0c2daa5e5f"),
     sampler=ProbabilitySampler(rate=1.0),
 )
 
