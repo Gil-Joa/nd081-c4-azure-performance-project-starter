@@ -20,9 +20,13 @@ from opencensus.ext.azure.trace_exporter import AzureExporter
 from opencensus.trace.samplers import ProbabilitySampler
 from opencensus.trace.tracer import Tracer
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
+from opencensus.ext.azure.log_exporter import AzureEventHandler
 
 # Logging
 #logger = # TODO: Setup logger
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureEventHandler(connection_string='InstrumentationKey=d069c3f6-ff9a-46e5-b3ac-0df8992c50de'))
+logger.setLevel(logging.INFO)
 
 # Metrics
 #exporter = # TODO: Setup exporter
@@ -103,12 +107,14 @@ def index():
             vote1 = r.get(button1).decode('utf-8')
             properties = {'custom_dimensions': {'Cats Vote': vote1}}
             # TODO: use logger object to log cat vote
-            app.logger.info('Cats Vote')
+            logger.info('Yay for Cat!')
+            # app.logger.info('Cats Vote')
 
             vote2 = r.get(button2).decode('utf-8')
             properties = {'custom_dimensions': {'Dogs Vote': vote2}}
             # TODO: use logger object to log dog vote
-            app.logger.info('Dogs Vote')
+            logger.info('Yay for Dog!')
+            # app.logger.info('Dogs Vote')
 
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
 
