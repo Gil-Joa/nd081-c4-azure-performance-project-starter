@@ -131,6 +131,8 @@ def index():
             logger.info('Yay for Cat!')
             
             vote2 = r.get(button2).decode('utf-8')
+            with tracer.span(name='Dogs Vote'):
+              logger.info('Yay for Dog!')
 
             # Return results
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
